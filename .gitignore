@@ -37,3 +37,4 @@ go.work.sum
 authApp
 frontApp
 brokerApp
+loggerServiceApp

@@ -26,7 +26,7 @@ type Models struct {
 }
 
 type LogEntry struct {
-	ID        string    `bson:"_id,omitEmpty" json:"id,omitempty"`
+	ID        string    `bson:"_id,omitempty" json:"id,omitempty"`
 	Name      string    `bson:"name" json:"name"`
 	Data      string    `bson:"data" json:"data"`
 	CreatedAt time.Time `bson:"created_at" json:"created_at"`
@@ -75,7 +75,7 @@ func (l *LogEntry) All() ([]*LogEntry, error) {
 
 		err := cursor.Decode(&item)
 		if err != nil {
-			log.Panicln("Error decoding log into slice", err)
+			log.Println("Error decoding log into slice", err)
 			return nil, err
 		} else {
 			logs = append(logs, &item)
@@ -137,7 +137,7 @@ func (l *LogEntry) Update() (*mongo.UpdateResult, error) {
 				"$set", bson.D{
 					{"name", l.Name},
 					{"data", l.Data},
-					{"update_at", time.Now()},
+					{"updated_at", time.Now()},
 				}},
 		},
 	)
